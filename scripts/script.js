@@ -13,15 +13,17 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+Book.prototype.toggleReadStatus = function () {
+    this.read = !this.read;
+}
+
 function saveLibrary() {
     localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 
 function loadLibrary() {
-    const savedLibrary = localStorage.getItem("myLibrary");
-    if (savedLibrary) {
-        myLibrary = JSON.parse(savedLibrary);
-    }
+    const storedLibrary = JSON.parse(localStorage.getItem("myLibrary")) || [];
+    myLibrary = storedLibrary.map(book => Object.assign(new Book(), book));
 }
 
 function updateStats() {
@@ -145,8 +147,6 @@ submit_add_book_btn.addEventListener("click", (event) =>{
 document.querySelector(".books-container").addEventListener("click", function (event) {
     const bookId = event.target.closest('.book-item').getAttribute('data-id');
     const bookToEdit = myLibrary.find(book => book.id === bookId);
-    const bookItemElement = event.target.closest(".book-item");
-    const bookBtn = bookItemElement.querySelector("button");
 
     if (event.target && event.target.innerText === "Remove") {
         const index = myLibrary.indexOf(bookToEdit);
@@ -157,21 +157,14 @@ document.querySelector(".books-container").addEventListener("click", function (e
         event.target.closest('.book-item').remove();
     }
 
-    if (event.target && event.target.innerText === "Completed") {
-        bookToEdit.read = false;
+    if (event.target && event.target.innerText === "Completed" || event.target && event.target.innerText === "Unread") {
+        bookToEdit.toggleReadStatus();
         
-        bookBtn.classList.remove("read");
-        bookBtn.classList.add("unread");
-        bookBtn.innerText = "Unread";
+        event.target.classList.toggle("read", bookToEdit.read);
+        event.target.classList.toggle("unread", !bookToEdit.read);
+        event.target.innerText = bookToEdit.read ? "Completed" : "Unread";
     }
 
-    else if (event.target && event.target.innerText === "Unread") {
-        bookToEdit.read = true;
-
-        bookBtn.classList.remove("unread");
-        bookBtn.classList.add("read");
-        bookBtn.innerText = "Completed";
-    }
     saveLibrary();
     updateStats();
 })
