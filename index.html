@@ -7,7 +7,30 @@
     <title>Library App</title>
 </head>
 <body>
-    
+    <div class="container">
+        <header>
+            <h2>Library.</h2>
+        </header>
+        <div class="sidebar">
+            <h3>Your Library:</h3>
+            <p>Number of books: <span id="total-books"></span></p>
+            <p>Number of read books: <span id="read-books"></span></p>
+            <p>Number of unread books: <span id="unread-books"></span></p>
+        </div>
+        <main>
+            <button>+ Add a new book</button>
+            <div class="books-container">
+                <!-- test book to delete -->
+                <div class="book-item">
+                    <p>Title</p>
+                    <p>Author</p>
+                    <p>pages</p>
+                    <button>Read</button>
+                    <button>Remove</button>
+                </div>
+            </div>
+        </main>
+    </div>
     <script src="./scripts/script.js"></script>
 </body>
 </html>

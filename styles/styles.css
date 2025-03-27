@@ -1,0 +1,108 @@
+:root {
+    --creamy-beige: #fff2e1;
+    --lighter-brown: #d1bb9e;
+    --light-brown: #a79277;
+    --dark-brown: #764640;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('../fonts/PlayfairDisplay-Black.woff2') format('woff2'),
+        url('../fonts/PlayfairDisplay-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('../fonts/PlayfairDisplay-Regular.woff2') format('woff2'),
+        url('../fonts/PlayfairDisplay-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('../fonts/PlayfairDisplay-Bold.woff2') format('woff2'),
+        url('../fonts/PlayfairDisplay-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    color: var(--dark-brown);
+}
+
+/* CSS RESET */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  * {
+    margin: 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      interpolate-size: allow-keywords;
+    }
+  }
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  input, button, textarea, select {
+    font: inherit;
+  }
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+  #root, #__next {
+    isolation: isolate;
+  }
+
+
+  .container {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: 8vh 1fr;
+    grid-template-columns: 1fr 4fr;
+    grid-template-areas: 
+    "header header"
+    "sidebar main";
+  }
+
+  header {
+    grid-area: header;
+    background-color: var(--light-brown);
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  header h2 {
+    font-weight: 900;
+    font-size: clamp(1.5rem, 2vw, 2.5rem);
+  }
+
+  .sidebar {
+    grid-area: sidebar;
+    background-color: var(--lighter-brown);
+  }
+
+  main {
+    grid-area: main;
+    background-color: var(--creamy-beige);
+  }
