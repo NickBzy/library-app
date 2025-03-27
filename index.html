@@ -27,18 +27,28 @@
             </div>    
         </div>
         <main>
-            <button>+ Add a new book</button>
+            <button id="add-book">+ Add a new book</button>
             <div class="books-container">
-                <!-- test book to delete -->
-                <div class="book-item">
-                    <p>Title</p>
-                    <p>Author</p>
-                    <p>pages</p>
-                    <button>Read</button>
-                    <button>Remove</button>
-                </div>
             </div>
         </main>
+        <div class="modal-overlay">
+            <div class="modal">
+                <form>
+                    <h3>Add a new book</h3>
+                    <input type="text" placeholder="Title" name="title" required>
+                    <p id="title-req">Title is required</p>
+                    <input type="text" placeholder="Author" name="author" required>
+                    <p id="author-req">Author is required</p>
+                    <input type="number" placeholder="Pages" name="pages" required>
+                    <p id="pages-req">Number of pages is required</p>
+                    <div>
+                        <label for="read">Completed?</label>
+                        <input type="checkbox" id="read">
+                    </div>
+                    <button id="submit-book">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
     <script src="./scripts/script.js"></script>
 </body>
