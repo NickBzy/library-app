@@ -1,6 +1,6 @@
 console.log("Hello World")
 
-const myLibrary = [];
+let myLibrary = [];
 
 function Book(title, author, pages, read) {
     if (!new.target){
@@ -11,6 +11,17 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
+}
+
+function saveLibrary() {
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
+
+function loadLibrary() {
+    const savedLibrary = localStorage.getItem("myLibrary");
+    if (savedLibrary) {
+        myLibrary = JSON.parse(savedLibrary);
+    }
 }
 
 function updateStats() {
@@ -32,6 +43,7 @@ function updateStats() {
 function addBookToLibrary(title, author, pages, read) {
     let book = new Book(title, author, pages, read);
     myLibrary.push(book);
+    saveLibrary();
 }
 
 function displayBooks(library) {
@@ -69,9 +81,6 @@ function displayBooks(library) {
     }
 }
 
-updateStats();
-displayBooks(myLibrary);
-
 const add_book_btn = document.querySelector("#add-book");
 const modal_overlay = document.querySelector(".modal-overlay");
 const modal = document.querySelector(".modal");
@@ -88,10 +97,6 @@ modal_overlay.addEventListener("click", function() {
 modal.addEventListener("click", (event) =>{
     event.stopPropagation();
 });
-
-// Book.prototype.toggle_read = function() {
-
-// }
 
 const submit_add_book_btn = document.querySelector("#submit-book");
 submit_add_book_btn.addEventListener("click", (event) =>{
@@ -167,5 +172,10 @@ document.querySelector(".books-container").addEventListener("click", function (e
         bookBtn.classList.add("read");
         bookBtn.innerText = "Completed";
     }
+    saveLibrary();
     updateStats();
 })
+
+loadLibrary();
+updateStats();
+displayBooks(myLibrary);
