@@ -3,6 +3,7 @@
     --lighter-brown: #d1bb9e;
     --light-brown: #a79277;
     --dark-brown: #764640;
+    --dark-green: #2F5D50;
 }
 
 @font-face {
@@ -90,6 +91,9 @@ body {
     padding: 20px 40px;
     display: flex;
     align-items: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2),
+    inset 0px 4px 4px var(--creamy-beige);
+    z-index: 10;
   }
 
   header h2 {
@@ -100,6 +104,28 @@ body {
   .sidebar {
     grid-area: sidebar;
     background-color: var(--lighter-brown);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sidebar h3 {
+    font-size: clamp(1rem, 1.5vw, 2rem);
+  }
+
+  .sidebar .stats {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar .stats p:nth-child(1) {
+    font-size: clamp(1rem, 1.2vw, 1.5rem);
+  }
+
+  .sidebar .stats p:nth-child(2) {
+    color: var(--dark-green);
+    font-size: clamp(3rem, 4vw, 6rem);
   }
 
   main {
