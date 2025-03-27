@@ -216,7 +216,7 @@ body {
   }
 
   .modal {
-    /* opacity: 0; */
+    opacity: 0;
     background-color: var(--dark-green);
     padding: 24px 32px;
     pointer-events: none;
